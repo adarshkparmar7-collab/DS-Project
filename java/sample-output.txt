@@ -1,0 +1,180 @@
+=============================================================
+        SMART TRANSPORT PLANNER USING DATA STRUCTURES
+=============================================================
+Loading sample data ...
+Loaded 7 locations, 8 routes, 3 waiting passengers and 3 transport requests.
+*************************************************************
+
+========= SMART TRANSPORT PLANNER =========
+1.  Add Location
+2.  Add Route
+3.  Display Transport Network
+4.  Find Shortest Route
+5.  Display Route Distance
+6.  Add Passenger
+7.  Display Passenger Queue
+8.  Process Passenger
+9.  Add Transport Request
+10. Process Priority Request
+11. Search Location
+12. Sort Transport Options
+13. View Recent Routes
+14. View Passenger/Trip History
+15. Exit
+==========================================
+Enter your choice (1-15): 3
+
+============ TRANSPORT NETWORK (ADJACENCY LIST) ============
+   Ahmedabad -> Rajkot (215 km), Vadodara (110 km), Gandhinagar (30 km)
+   Rajkot -> Ahmedabad (215 km), Jamnagar (90 km), Bhavnagar (170 km)
+   Surat -> Vadodara (150 km), Bhavnagar (170 km)
+   Vadodara -> Ahmedabad (110 km), Surat (150 km), Bhavnagar (200 km)
+   Bhavnagar -> Rajkot (170 km), Vadodara (200 km), Surat (170 km)
+   Gandhinagar -> Ahmedabad (30 km)
+   Jamnagar -> Rajkot (90 km)
+============================================================
+   Locations : 7
+   Routes    : 8
+   Network   : 1135 km of road
+============================================================
+
+Enter your choice (1-15): 4
+Enter source location      : Ahmedabad
+Enter destination location : Rajkot
+
+---------- DIJKSTRA'S SHORTEST PATH ----------
+Source          : Ahmedabad
+Destination     : Rajkot
+Shortest Route  : Ahmedabad -> Rajkot
+Total Distance  : 215 km
+Roads travelled : 1
+Cities visited  : 2
+----------------------------------------------
+(BFS would give the fewest stops : Ahmedabad -> Rajkot)
+
+Enter your choice (1-15): 4
+Enter source location      : Ahmedabad
+Enter destination location : Surat
+
+---------- DIJKSTRA'S SHORTEST PATH ----------
+Source          : Ahmedabad
+Destination     : Surat
+Shortest Route  : Ahmedabad -> Vadodara -> Surat
+Total Distance  : 260 km
+Roads travelled : 2
+Cities visited  : 4
+(an indirect route through intermediate cities was shorter)
+----------------------------------------------
+(BFS would give the fewest stops : Ahmedabad -> Vadodara -> Surat)
+
+Enter your choice (1-15): 5
+
+---------- ROUTE DISTANCE ----------
+Source          : Ahmedabad
+Destination     : Surat
+Shortest Route  : Ahmedabad -> Vadodara -> Surat
+Total Distance  : 260 km
+Estimated Time  : 260 min by road
+Cheapest Ticket : Rs.446 by bus
+--------------------------------------------
+
+Enter your choice (1-15): 7
+
+---------- PASSENGER QUEUE (FIFO) ----------
+   1. Passenger ID: 101 | Name: Rahul | Ahmedabad -> Rajkot   <- FRONT
+   2. Passenger ID: 102 | Name: Priya | Ahmedabad -> Surat
+   3. Passenger ID: 103 | Name: Sanjay | Ahmedabad -> Jamnagar
+Total waiting passengers : 3
+--------------------------------------------
+
+Enter your choice (1-15): 8
+
+---------- PROCESS PASSENGER (DEQUEUE) ----------
+   Removed from the FRONT of the queue : Passenger ID: 101 | Name: Rahul | Ahmedabad -> Rajkot
+   Transport type (Bus/Train/Taxi/Metro): Bus
+   Boarding pass issued :
+   Trip #1 : Rahul travelled Ahmedabad -> Rajkot (215 km) by Bus in 235 minutes for Rs.374
+   Trip stored in the linked list history.
+   Passengers still waiting : 2
+-------------------------------------------------
+
+Enter your choice (1-15): 10
+
+---------- PROCESS PRIORITY REQUEST ----------
+---------- PENDING REQUESTS (PRIORITY ORDER) ----------
+   1. #1 Meena Desai [Emergency] Ahmedabad -> Jamnagar (Medical emergency - ambulance escort)   <- NEXT
+   2. #2 Kiran Shah [Senior Citizen] Ahmedabad -> Surat (Wheelchair assistance)
+   3. #3 Amit Patel [Regular] Rajkot -> Bhavnagar (Standard booking)
+Total pending requests : 3
+--------------------------------------------------------
+
+   Serving the HIGHEST priority request : #1 Meena Desai [Emergency] Ahmedabad -> Jamnagar (Medical emergency - ambulance escort)
+   Trip #2 : Meena Desai travelled Ahmedabad -> Rajkot -> Jamnagar (305 km) by Taxi in 254 minutes for Rs.1727
+   Trip added to the linked list history.
+   Requests still pending : 2
+----------------------------------------------
+
+Enter your choice (1-15): 11
+Enter location name (or a part of it) to search: abad
+---------- SEARCH RESULT (LINEAR SEARCH) ----------
+   Found: Ahmedabad  (degree 3)
+   1 location(s) found out of 7.
+----------------------------------------------------
+Search a passenger in the trip history (Enter to skip): Rahul
+---------- PASSENGER SEARCH ----------
+   Rahul | Ahmedabad | Rajkot | 215 km | Bus
+--------------------------------------
+
+Enter your choice (1-15): 12
+Available transport options : 28
+Sort by ->  1.Distance  2.Travel Time  3.Ticket Price  : 3
+Algorithm ->  1.Quick Sort  2.Bubble Sort  : 1
+
+----------- TRANSPORT OPTIONS SORTED BY TICKET PRICE -----------
+   1. Metro Link Express | Metro | Ahmedabad -> Gandhinagar | 30 km | 29 min | Rs.47
+   2. Mega Metro | Metro | Rajkot -> Jamnagar | 90 km | 87 min | Rs.101
+   ...
+--------------------------------------------------------
+   Cheapest  : Rs.47
+   Fastest   : 29 min
+Binary search an operator by exact name (Enter to skip): City Cabs
+---------- BINARY SEARCH ----------
+   Found at index 5 : City Cabs | Taxi | Ahmedabad -> Gandhinagar | 30 km | 25 min | Rs.242
+-----------------------------------
+
+Enter your choice (1-15): 13
+
+---------- RECENTLY SEARCHED ROUTES (STACK - LIFO) ----------
+   2. Ahmedabad -> Rajkot (215 km)
+   1. Ahmedabad -> Surat (260 km)   <- TOP
+   Top of the stack (peek) : Ahmedabad -> Surat (260 km)
+   Total searches          : 2
+--------------------------------------------------------------
+Do you want to remove the last searched route? (yes/no): no
+
+Enter your choice (1-15): 14
+
+---------- PASSENGER / TRIP HISTORY (LINKED LIST) ----------
+   1. Rahul | Ahmedabad | Rajkot | 215 km | Bus
+   2. Meena Desai | Ahmedabad | Jamnagar | 305 km | Taxi
+   Total trips : 2
+-------------------------------------------------------------
+   Linked list structure :
+   head -> [ Rahul | Ahmedabad | Rajkot | 215 km | Bus ] -> [ Meena Desai | Ahmedabad | Jamnagar | 305 km | Taxi ] -> null
+   Reverse the linked list? (yes/no): no
+
+Enter your choice (1-15): 15
+
+*************************************************************
+
+                      SESSION SUMMARY
+*************************************************************
+ Locations in the graph   : 7
+ Roads in the graph       : 8
+ Passengers still waiting : 2
+ Requests still pending   : 2
+ Trips recorded           : 2
+ Recent searches (stack)  : 2
+*************************************************************
+   Thank you for using Smart Transport Planner!
+*************************************************************
